@@ -1,16 +1,16 @@
 ﻿using MDK._01._01_PR_49.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace MDK._01._01_PR_49.Context
 {
-    public class UserContext : DbContext
+    public class VersionContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public UserContext()
+        public DbSet<Version> Versions { get; set; }
+
+        public VersionContext()
         {
             Database.EnsureCreated();
-            Users.Load();
+            Versions.Load();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
