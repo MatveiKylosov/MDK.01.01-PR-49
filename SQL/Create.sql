@@ -10,6 +10,7 @@ CREATE TABLE `Users` (
   `Email` varchar(255) DEFAULT NULL,
   `Login` varchar(50) DEFAULT NULL,
   `Password` varchar(50) DEFAULT NULL,
+  `Token` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

@@ -32,11 +32,22 @@ namespace MDK._01._01_PR_49.Controllers
                 return StatusCode(403);
             try
             {
-                User User = new UserContext().Users.Where(x => x.Login == Login && x.Password == Password).FirstOrDefault();
+                UserContext userContext = new UserContext();
+                User User = userContext.Users.Where(x => x.Login == Login && x.Password == Password).FirstOrDefault();
+
                 if (User == null)
-                {
                     return StatusCode(401);
+
+                StringBuilder builder = new StringBuilder();
+                using (SHA384 sha384Hash = SHA384.Create())
+                {
+                    byte[] bytes = sha384Hash.ComputeHash(Encoding.UTF8.GetBytes(Password));
+                    for (int i = 0; i < 20; i++)
+                        builder.Append(bytes[i].ToString("x2"));
                 }
+
+                User.Token = builder.ToString();
+                userContext.SaveChanges();
                 return Json(User);
             }
             catch (Exception ex)

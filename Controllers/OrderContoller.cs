@@ -3,6 +3,7 @@ using MDK._01._01_PR_49.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MDK._01._01_PR_49.Controllers
 {
@@ -25,8 +26,11 @@ namespace MDK._01._01_PR_49.Controllers
         [ProducesResponseType(typeof(Orders), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public ActionResult AddOrder([FromForm] string Address, [FromForm] DateTime Date, [FromForm] int DishId, [FromForm] int Count)
+        public ActionResult AddOrder([FromForm] string Address, [FromForm] DateTime Date, [FromForm] int DishId, [FromForm] int Count, [FromForm] string Token)
         {
+            if (new UserContext().Users.FirstOrDefault(x => x.Token == Token) == null || Token == null)
+                return StatusCode(401);
+
             try
             {
                 var newOrder = new OrderContext();
@@ -63,8 +67,11 @@ namespace MDK._01._01_PR_49.Controllers
         [ProducesResponseType(typeof(List<Orders>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public ActionResult History()
+        public ActionResult History([FromForm] string Token)
         {
+            if (new UserContext().Users.FirstOrDefault(x => x.Token == Token) == null || Token == null)
+                return StatusCode(401);
+
             try
             {
                 return Json(new OrderContext().Orders);

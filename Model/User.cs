@@ -1,4 +1,5 @@
-﻿namespace MDK._01._01_PR_49.Model
+﻿using Schema = System.ComponentModel.DataAnnotations.Schema;
+namespace MDK._01._01_PR_49.Model
 {
     public class User
     {
@@ -18,5 +19,7 @@
         /// Пароль пользователя
         /// </summary>
         public string Password { get; set; }
+
+        public string Token { get; set; }
     }
 }

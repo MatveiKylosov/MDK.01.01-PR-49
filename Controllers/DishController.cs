@@ -19,12 +19,16 @@ namespace MDK._01._01_PR_49.Controllers
         /// <remarks>Данный метод получает список блюд, находящийся в базе данных</remarks>
         /// <response code="200">Список успешно получен</response>
         /// <response code="400">Проблемы при запросе</response>
+        /// <response code="401">Неавторизированный доступ</response>
         [Route("List")]
         [HttpPost]
         [ProducesResponseType(typeof(List<Dish>), 200)]
         [ProducesResponseType(400)]
-        public ActionResult List([FromForm] int VersionId)
+        public ActionResult List([FromForm] int VersionId, [FromForm] string Token)
         {
+            if (new UserContext().Users.FirstOrDefault(x => x.Token == Token) == null || Token == null)
+                return StatusCode(401);
+
             try
             {
                 return Json(new DishContext().Dishes.Where(x => x.VersionId == (decimal)VersionId));
