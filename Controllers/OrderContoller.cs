@@ -2,6 +2,7 @@
 using MDK._01._01_PR_49.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace MDK._01._01_PR_49.Controllers
 {
@@ -45,6 +46,30 @@ namespace MDK._01._01_PR_49.Controllers
 
             }
             catch (Exception ex)
+            {
+                return StatusCode(400);
+            }
+        }
+
+        /// <summary>
+        /// Возвращает историю заказов
+        /// </summary>
+        /// <returns>История заказов</returns>
+        /// <response code="200">запросы выполнен</response>
+        /// <response code="400">Проблема при запросе</response>
+        /// <response code="401">Неавторизированный доступ</response>
+        [Route("History")]
+        [HttpPost]
+        [ProducesResponseType(typeof(List<Orders>), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public ActionResult History()
+        {
+            try
+            {
+                return Json(new OrderContext().Orders);
+
+            }catch (Exception ex)
             {
                 return StatusCode(400);
             }
