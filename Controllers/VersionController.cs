@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MDK._01._01_PR_49.Controllers
 {
-    [Route("api/UsersController")]
+    [Route("api/VersionController")]
     [ApiExplorerSettings(GroupName = "v2")]
     public class VersionController : Controller
     {
@@ -25,7 +25,7 @@ namespace MDK._01._01_PR_49.Controllers
             {
                 return Json(new VersionContext().Versions);
             }
-            catch
+            catch (Exception ex)
             {
                 return StatusCode(400);
             }

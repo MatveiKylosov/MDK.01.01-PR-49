@@ -27,12 +27,14 @@ namespace MDK._01._01_PR_49
                     Title = "Руководство для использования запросов",
                     Description = "Полное руководство для использования запросов находящихся в проекте"
                 });
+
                 c.SwaggerDoc("v2", new OpenApiInfo
                 {
                     Version = "v2",
                     Title = "Руководство для использования запросов",
                     Description = "Полное руководство для использования запросов находящихся в проекте"
                 });
+
                 c.SwaggerDoc("v3", new OpenApiInfo
                 {
                     Version = "v3",
@@ -40,7 +42,14 @@ namespace MDK._01._01_PR_49
                     Description = "Полное руководство для использования запросов находящихся в проекте"
                 });
 
-                var filtePath = Path.Combine(System.AppContext.BaseDirectory, "API_Kylosov.xml");
+                c.SwaggerDoc("v4", new OpenApiInfo
+                {
+                    Version = "v4",
+                    Title = "Руководство для использования запросов",
+                    Description = "Полное руководство для использования запросов находящихся в проекте"
+                });
+
+                var filtePath = Path.Combine(System.AppContext.BaseDirectory, "MDK.01.01-PR-49.xml");
                 c.IncludeXmlComments(filtePath);
             }
             );
@@ -57,6 +66,7 @@ namespace MDK._01._01_PR_49
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы на авторизацию и регистрацию.");
                 c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы для версий.");
                 c.SwaggerEndpoint("/swagger/v3/swagger.json", "Запросы для блюд.");
+                c.SwaggerEndpoint("/swagger/v4/swagger.json", "Запросы для заказов.");
             });
 
         }

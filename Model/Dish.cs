@@ -8,7 +8,7 @@
         /// <summary>
         /// Идентификатор блюда
         /// </summary>
-        public int DishId { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// Категория
         /// </summary>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Цена
         /// </summary>
-        public string Price { get; set; }
+        public decimal Price { get; set; }
         /// <summary>
         /// Изображение
         /// </summary>
@@ -28,6 +28,6 @@
         /// <summary>
         /// Версия
         /// </summary>
-        public int Version { get; set; }
+        public int VersionId { get; set; }
     }
 }

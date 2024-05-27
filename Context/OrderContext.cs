@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MDK._01._01_PR_49.Context
 {
-    public class VersionContext : DbContext
+    public class OrderContext : DbContext
     {
-        public DbSet<Version> Versions { get; set; }
+        public DbSet<Orders> Orders { get; set; }
 
-        public VersionContext()
+        public OrderContext()
         {
             Database.EnsureCreated();
-            Versions.Load();
+            Orders.Load();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

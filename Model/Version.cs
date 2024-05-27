@@ -9,6 +9,6 @@
         /// <summary>
         /// Версия
         /// </summary>
-        public string Version { get; set; }
+        public string VersionString { get; set; }
     }
 }
